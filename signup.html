@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Sign Up | Thakur Store</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="auth-box">
+
+<h1>THAKUR STORE</h1>
+
+<h2>Create Account</h2>
+
+
+<input type="text" placeholder="Full Name">
+
+
+<input type="email" placeholder="Email">
+
+
+<input type="password" placeholder="Create Password">
+
+
+<button>Sign Up</button>
+
+
+<p>
+Already have account?
+<a href="login.html">Login</a>
+</p>
+
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDQLoNjuW5L1v_r4JZQSMyGI7hGi2yYuS8",
+  authDomain: "thakur-store.firebaseapp.com",
+  projectId: "thakur-store",
+  storageBucket: "thakur-store.firebasestorage.app",
+  messagingSenderId: "527681118144",
+  appId: "1:527681118144:web:0227cc0a6b9460713b3225",
+  measurementId: "G-TB1NDKT9NB"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+document.querySelector("button").addEventListener("click", function(){
+
+    let email = document.querySelectorAll("input")[1].value;
+
+    let password = document.querySelectorAll("input")[2].value;
+
+
+    createUserWithEmailAndPassword(auth,email,password)
+
+    .then((userCredential)=>{
+
+        alert("Account Created Successfully 🔥");
+
+        window.location.href="login.html";
+
+    })
+
+    .catch((error)=>{
+
+        alert(error.message);
+
+    });
+
+
+});
+
+
+</script>
+
+</body>
+
+</html>

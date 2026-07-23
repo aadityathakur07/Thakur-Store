@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My Account | Thakur Store</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="auth-box">
+
+<h1>THAKUR STORE</h1>
+
+<h2>My Account</h2>
+
+<div class="profile-card">
+
+<h2>Welcome To THAKUR STORE</h2>
+
+<p id="userEmail">
+Loading...
+</p>
+
+<p>
+Your account is active.
+</p>
+
+<button id="logout">
+Logout
+</button>
+
+</div>
+
+
+<button id="logout">
+Logout
+</button>
+
+
+</div>
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import { 
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+
+onAuthStateChanged(auth,(user)=>{
+
+
+if(user){
+
+document.getElementById("userEmail").innerHTML =
+"Logged in as: " + user.email;
+
+
+}
+
+else{
+
+document.getElementById("userEmail").innerHTML =
+"Please login first";
+
+}
+
+});
+
+
+
+
+document.getElementById("logout").onclick=function(){
+
+
+signOut(auth).then(()=>{
+
+
+alert("Logged Out Successfully");
+
+window.location.href="index.html";
+
+
+});
+
+
+};
+
+
+
+</script>
+
+
+</body>
+
+</html>

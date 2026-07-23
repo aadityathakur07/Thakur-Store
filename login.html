@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Login | Thakur Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="auth-box">
+
+<h1>THAKUR STORE</h1>
+
+<h2>Login</h2>
+
+<input type="email" placeholder="Enter Email">
+
+<input type="password" placeholder="Enter Password">
+
+<button>Login</button>
+
+<p>
+Don't have an account?
+<a href="signup.html">Sign Up</a>
+</p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+getAuth, 
+signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDQLoNjuW5L1v_r4JZQSMyGI7hGi2yYuS8",
+  authDomain: "thakur-store.firebaseapp.com",
+  projectId: "thakur-store",
+  storageBucket: "thakur-store.firebasestorage.app",
+  messagingSenderId: "527681118144",
+  appId: "1:527681118144:web:0227cc0a6b9460713b3225",
+  measurementId: "G-TB1NDKT9NB"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+document.querySelector("button").addEventListener("click",()=>{
+
+
+let email = document.querySelectorAll("input")[0].value;
+
+let password = document.querySelectorAll("input")[1].value;
+
+
+signInWithEmailAndPassword(auth,email,password)
+
+.then((userCredential)=>{
+
+alert("Login Successful 🔥");
+
+window.location.href="account.html";
+
+})
+
+
+.catch((error)=>{
+
+alert(error.message);
+
+});
+
+
+});
+
+
+</script>
+
+</body>
+
+</html>

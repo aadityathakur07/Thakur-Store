@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | THAKUR STORE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+THAKUR <span>STORE</span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="#">Deals</a>
+
+<a href="#">Categories</a>
+
+<a href="account.html">Account</a>
+
+</nav>
+
+<div class="nav-icons">
+
+<button id="searchBtn">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
+<a href="account.html">
+
+<button>
+
+<i class="fa-regular fa-user"></i>
+
+</button>
+
+</a>
+
+</div>
+
+</header>
+
+<section class="page-title">
+
+<h1>
+
+Our Products
+
+</h1>
+
+<p>
+
+Discover the best Amazon & Flipkart deals.
+
+</p>
+
+</section>
+
+<section class="products-page">
+
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search products..."
+>
+
+<div class="category-filter">
+
+    <button class="filter-btn active" data-category="All">All</button>
+
+    <button class="filter-btn" data-category="Mobile">Mobile</button>
+
+    <button class="filter-btn" data-category="Laptop">Laptop</button>
+
+    <button class="filter-btn" data-category="Audio">Audio</button>
+
+    <button class="filter-btn" data-category="Fashion">Fashion</button>
+
+</div>
+
+<div id="productsContainer">
+
+<!-- Firebase Products will come here -->
+
+</div>
+
+</section>
+
+
+<script src="script.js"></script>
+<script type="module" src="products.js"></script>
+</body>
+
+</html>
