@@ -53,27 +53,33 @@ function renderCart(products) {
 
         total += Number(product.price);
 
-        container.innerHTML += `
-        <div class="cart-item">
+container.innerHTML += `
+<div class="cart-item">
 
-            <img src="${product.image}" width="120">
+    <img src="${product.image}" class="cart-image">
 
-            <div>
+    <div class="cart-info">
 
-                <h3>${product.title}</h3>
+        <h3>${product.title}</h3>
 
-                <p>₹${product.price}</p>
+        <p class="cart-price">₹${product.price}</p>
 
-                <button class="remove-btn"
-                    data-id="${product.id}">
-                    Remove
-                </button>
+        <div class="cart-actions">
 
-            </div>
+            <button class="remove-btn" data-id="${product.id}">
+                🗑 Remove
+            </button>
+
+            <a href="product.html?id=${product.id}">
+                <button>View Product</button>
+            </a>
 
         </div>
-        `;
 
+    </div>
+
+</div>
+`;
     });
 
     container.innerHTML += `
