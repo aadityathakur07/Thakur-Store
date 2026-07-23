@@ -44,6 +44,7 @@ async function loadProduct() {
         const product = productSnap.data();
         console.log(product);
 
+console.log(container); 
         container.innerHTML = `
 
 <div class="product-details-container">
