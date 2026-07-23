@@ -1911,3 +1911,32 @@ gap:30px;
     background:var(--gold);
     color:#000;
 }
+
+/* ===== Navbar Badge ===== */
+
+.nav-icon{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.badge{
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ff3b30;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

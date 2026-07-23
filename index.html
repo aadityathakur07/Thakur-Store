@@ -64,36 +64,25 @@ THAKUR <span>STORE</span>
 
 <div class="nav-icons">
 
-<button id="searchBtn">
+    <button id="searchBtn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
 
-<i class="fa-solid fa-magnifying-glass"></i>
+    <a href="wishlist.html" class="nav-icon">
+        <i class="fa-regular fa-heart"></i>
+        <span id="wishlistCount" class="badge">0</span>
+    </a>
 
-</button>
+    <a href="cart.html" class="nav-icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount" class="badge">0</span>
+    </a>
 
-<button>
-
-<i class="fa-regular fa-heart"></i>
-
-</button>
-
-<button>
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-</button>
-
-<a href="account.html">
-
-<button>
-
-<i class="fa-regular fa-user"></i>
-
-</button>
-
-</a>
+    <a href="account.html" class="nav-icon">
+        <i class="fa-regular fa-user"></i>
+    </a>
 
 </div>
-
 </header>
 
 <!-- =========================
@@ -313,17 +302,11 @@ FEATURED PRODUCTS
 
     </div>
 
-    <div class="product-grid">
+    <div class="product-grid" id="featuredProducts">
 
-        <div class="product-card">
+    <!-- Featured products will load here -->
 
-            <div class="product-badge">NEW</div>
-
-            <div class="product-image">
-
-                <i class="fa-solid fa-shirt"></i>
-
-            </div>
+</div>
 
             <h3>Oversized Hoodie</h3>
 
@@ -788,6 +771,7 @@ SEARCH POPUP
 </button>
 
 <script src="script.js"></script>
+<script type="module" src="home.js"></script>
 
 </body>
 

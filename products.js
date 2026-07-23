@@ -12,6 +12,12 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 let allProducts = [];
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 let currentCategory = "All";
+const params = new URLSearchParams(window.location.search);
+const searchFromHome = params.get("search");
+
+if (searchFromHome && searchInput) {
+    searchInput.value = searchFromHome;
+}
 
 // ======================
 // Load Products
@@ -34,8 +40,7 @@ async function loadProducts() {
 
         });
 
-        renderProducts(allProducts);
-
+filterProducts();
     } catch (error) {
 
         console.error(error);
@@ -77,7 +82,7 @@ onclick="location.href='product.html?id=${product.id}'">
 
 <button class="wishlist-btn" data-id="${product.id}">
     ${wishlist.includes(product.id) ? "❤️" : "🤍"}
-</button>
+    </button>
 ${product.featured ?
 `<span class="featured-badge">Featured</span>` : ""}
 
@@ -98,6 +103,10 @@ ${product.featured ?
 <p>⭐ ${product.rating}</p>
 
 <div class="product-buttons">
+
+<button class="cart-btn" data-id="${product.id}">
+🛒 Add to Cart
+</button>
 
 <a href="${product.amazonLink}" target="_blank">
 <button>Amazon</button>
@@ -136,6 +145,34 @@ document.querySelectorAll(".wishlist-btn").forEach((btn) => {
         localStorage.setItem("wishlist", JSON.stringify(wishlist));
 
         filterProducts();
+
+    });
+
+});
+
+document.querySelectorAll(".cart-btn").forEach((btn) => {
+
+    btn.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const id = btn.dataset.id;
+
+        if (!cart.includes(id)) {
+
+            cart.push(id);
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("✅ Product Added to Cart");
+
+        } else {
+
+            alert("🛒 Product already in Cart");
+
+        }
 
     });
 

@@ -145,3 +145,27 @@ searchInput.addEventListener("keypress", (e) => {
     }
 
 });
+
+// ======================
+// Navbar Count
+// ======================
+
+function updateNavbarCounts() {
+
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const wishlistCount = document.getElementById("wishlistCount");
+    const cartCount = document.getElementById("cartCount");
+
+    if (wishlistCount) {
+        wishlistCount.textContent = wishlist.length;
+    }
+
+    if (cartCount) {
+        cartCount.textContent = cart.length;
+    }
+
+}
+
+updateNavbarCounts();
