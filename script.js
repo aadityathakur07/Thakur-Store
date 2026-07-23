@@ -93,19 +93,55 @@ window.addEventListener("scroll", reveal);
 reveal();
 
 const searchBtn = document.getElementById("searchBtn");
+const searchPopup = document.getElementById("searchPopup");
 const searchInput = document.getElementById("searchInput");
+const closeSearch = document.getElementById("closeSearch");
+const searchGo = document.getElementById("searchGo");
 
-if (searchBtn && searchInput) {
+if (searchBtn && searchPopup) {
 
     searchBtn.addEventListener("click", () => {
 
+        searchPopup.classList.add("active");
         searchInput.focus();
-
-        searchInput.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
 
     });
 
 }
+
+if (closeSearch) {
+
+    closeSearch.addEventListener("click", () => {
+
+        searchPopup.classList.remove("active");
+
+    });
+
+}
+
+if (searchGo) {
+
+    searchGo.addEventListener("click", () => {
+
+        const value = searchInput.value.trim();
+
+        if (value !== "") {
+
+            window.location.href =
+                `products.html?search=${encodeURIComponent(value)}`;
+
+        }
+
+    });
+
+}
+
+searchInput.addEventListener("keypress", (e) => {
+
+    if (e.key === "Enter") {
+
+        searchGo.click();
+
+    }
+
+});

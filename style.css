@@ -1895,3 +1895,19 @@ gap:30px;
 .product-card{
     position:relative;
 }
+
+#closeSearch{
+    background:#222;
+    color:#fff;
+    width:60px;
+    transition:.3s;
+}
+
+#closeSearch:hover{
+    background:#ff4d4d;
+}
+
+#searchGo{
+    background:var(--gold);
+    color:#000;
+}
