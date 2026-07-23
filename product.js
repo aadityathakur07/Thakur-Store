@@ -114,23 +114,28 @@ console.log(container);
         // Cart
         document.getElementById("cartBtn").onclick = () => {
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            if (!cart.includes(productId)) {
+const existing = cart.find(item => item.id === productId);
 
-                cart.push(productId);
+if (existing) {
 
-                localStorage.setItem("cart", JSON.stringify(cart));
+    existing.qty++;
 
-                alert("🛒 Added to Cart");
+    alert("🛒 Quantity Updated");
 
-            } else {
+} else {
 
-                alert("Already in Cart");
+    cart.push({
+        id: productId,
+        qty: 1
+    });
 
-            }
+    alert("✅ Added to Cart");
 
-        };
+}
+
+localStorage.setItem("cart", JSON.stringify(cart));        };
 
     } catch (error) {
 

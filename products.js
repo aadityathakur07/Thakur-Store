@@ -156,24 +156,30 @@ document.querySelectorAll(".cart-btn").forEach((btn) => {
 
         e.stopPropagation();
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        const id = btn.dataset.id;
+const id = btn.dataset.id;
 
-        if (!cart.includes(id)) {
+const existing = cart.find(item => item.id === id);
 
-            cart.push(id);
+if (existing) {
 
-            localStorage.setItem("cart", JSON.stringify(cart));
+    existing.qty++;
 
-            alert("✅ Product Added to Cart");
+    alert("🛒 Quantity Updated");
 
-        } else {
+} else {
 
-            alert("🛒 Product already in Cart");
+    cart.push({
+        id: id,
+        qty: 1
+    });
 
-        }
+    alert("✅ Product Added to Cart");
 
+}
+
+localStorage.setItem("cart", JSON.stringify(cart));
     });
 
 });
