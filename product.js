@@ -1,11 +1,7 @@
 import { db } from "./firebase.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-// URL se Product ID lo
+// Get Product ID from URL
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
@@ -13,11 +9,14 @@ const container = document.getElementById("productDetails");
 
 async function loadProduct() {
 
+    console.log("Current URL:", window.location.href);
+    console.log("Product ID:", productId);
+
     if (!productId) {
 
         container.innerHTML = `
         <h2 style="text-align:center;padding:40px;">
-            Product Not Found
+            Invalid Product URL
         </h2>`;
 
         return;
@@ -26,10 +25,12 @@ async function loadProduct() {
 
     try {
 
-        const docRef = doc(db, "products", productId);
-        const docSnap = await getDoc(docRef);
+        const productRef = doc(db, "products", productId);
+        const productSnap = await getDoc(productRef);
 
-        if (!docSnap.exists()) {
+        console.log("Document Exists:", productSnap.exists());
+
+        if (!productSnap.exists()) {
 
             container.innerHTML = `
             <h2 style="text-align:center;padding:40px;">
@@ -40,16 +41,14 @@ async function loadProduct() {
 
         }
 
-        const product = docSnap.data();
+        const product = productSnap.data();
 
         container.innerHTML = `
 
 <div class="product-details-container">
 
     <div class="product-image">
-
         <img src="${product.image}" alt="${product.title}">
-
     </div>
 
     <div class="product-info">
@@ -58,29 +57,78 @@ async function loadProduct() {
 
         <p>⭐ ${product.rating}</p>
 
-        <h2>₹${product.price}
-        <span class="old-price">₹${product.oldPrice}</span>
+        <h2>
+            ₹${product.price}
+            <span class="old-price">₹${product.oldPrice}</span>
         </h2>
 
         <p>${product.description}</p>
 
         <div class="product-buttons">
 
-            <a href="${product.amazonLink}" target="_blank">
-                <button>Buy on Amazon</button>
-            </a>
+            <button id="wishlistBtn">❤️ Wishlist</button>
 
-            <a href="${product.flipkartLink}" target="_blank">
-                <button>Buy on Flipkart</button>
-            </a>
+            <button id="cartBtn">🛒 Add To Cart</button>
 
         </div>
+
+        <br>
+
+        <a href="${product.amazonLink}" target="_blank">
+            <button>Buy on Amazon</button>
+        </a>
+
+        <a href="${product.flipkartLink}" target="_blank">
+            <button>Buy on Flipkart</button>
+        </a>
 
     </div>
 
 </div>
 
 `;
+
+        // Wishlist
+        document.getElementById("wishlistBtn").onclick = () => {
+
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            if (!wishlist.includes(productId)) {
+
+                wishlist.push(productId);
+
+                localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+                alert("❤️ Added to Wishlist");
+
+            } else {
+
+                alert("Already in Wishlist");
+
+            }
+
+        };
+
+        // Cart
+        document.getElementById("cartBtn").onclick = () => {
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (!cart.includes(productId)) {
+
+                cart.push(productId);
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                alert("🛒 Added to Cart");
+
+            } else {
+
+                alert("Already in Cart");
+
+            }
+
+        };
 
     } catch (error) {
 
